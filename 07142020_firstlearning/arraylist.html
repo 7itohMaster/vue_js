@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array list vue</title>
+
+    <!-- animation -->
+    <style>
+        .flip-list-move{
+            transition: transform .5s;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+        <button v-on:click='shuffle'>shuffle</button>
+        <!-- <ul>
+            <li v-for='pref in prefs'>{{ pref.name }}</li>
+        </ul> -->
+        
+        <!-- animation -->
+        <transition-group name='flip-list' tag='ul'>
+            <li v-for='pref in prefs' v-bind:key='pref.name'>
+                {{ pref.name }}
+            </li>
+        </transition-group>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js"></script>
+
+    <script>
+
+        let app = new Vue({
+            el: '#app',
+            data:{
+                prefs:[
+                    {name : 'hokkaido1'},
+                    {name : 'hokkaido2'},
+                    {name : 'hokkaido3'},
+                    {name : 'hokkaido4'},
+                    {name : 'hokkaido5'},
+                    {name : 'hokkaido6'}
+                ]
+            },
+            methods:{
+                shuffle: function(){
+                    this.prefs = _.shuffle(this.prefs);
+            }
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
